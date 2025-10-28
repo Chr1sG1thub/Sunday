@@ -9,9 +9,7 @@ const store = new SteinStore(
   "https://api.steinhq.com/v1/storages/69013285affba40a6211afc2"
 );
 
-    store.read("Ride Plan 2025").then(data => {
-  console.log(data);
-});
+    store.read("Ride Plan 2025").then(data => {data.forEach{row => {console.log(row);}}});
 
 </script>
 </body>
