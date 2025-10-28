@@ -3,13 +3,18 @@
     <script src="https://unpkg.com/stein-js-client"></script>
   </head>
 <body>
+  <div id="acpTable"></div>
   <script>
 
 const store = new SteinStore(
   "https://api.steinhq.com/v1/storages/69013285affba40a6211afc2"
 );
 
-  store.read("Ride Plan 2025").then(data => {data.forEach(row => {console.log(row);})});
+  store.read("Ride Plan 2025")
+    .then(data => {data.forEach(
+      row => {
+        document.getElementById("acpTable").innerHTML = `<table><tr><td>Parcours</td><td>${data.parcours}</td></tr></table>
+  })});
 
 </script>
 </body>
