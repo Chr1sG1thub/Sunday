@@ -13,7 +13,11 @@ const store = new SteinStore(
   store.read("Ride Plan 2025")
     .then(data => {data.forEach(
       row => {
-        document.getElementById("acpTable").innerHTML = `<table><tr><td>Parcours</td><td>${row.Parcours}</td><tr><td>Dist (km)</td><td>${row.Distance}</td></tr><tr><td>Déniv (m)</td><td>${row.Denivele}</td></tr><tr><td>Café</td><td>${row.Pause Café}</td></tr></table>`
+        document.getElementById("acpTable").innerHTML =
+          `<table><tr><td>Parcours</td><td>${row.Parcours}</td><tr><td>Dist (km)</td><td>${row.Distance}</td></tr>
+                  <tr><td>Déniv (m)</td><td>${row.Denivele}</td></tr>
+                  <tr><td>Café</td><td>${row.`Pause Café`}</td></tr>
+                  </table>`
   })});
 
 </script>
