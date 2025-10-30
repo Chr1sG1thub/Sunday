@@ -16,7 +16,7 @@ const store = new SteinStore(
     .then(data => {data.forEach(
       row => {
        document.getElementById("acpBlurb").innerHTML =
-   `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 20px">
+   `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 18px">
   <img src = "ACP Logo.png" width=142px>Bonjour à toutes et tous,<br/><br/>
   <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${row.HeuredeDepart}.</strong></span>
   <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
