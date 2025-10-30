@@ -5,7 +5,7 @@
 <body>
    <div id="acpBlurb"></div>
   <div id="acpTable"></div>
-  </div>
+  
   <script>
 
 const store = new SteinStore(
@@ -16,23 +16,24 @@ const store = new SteinStore(
     .then(data => {data.forEach(
       row => {
        document.getElementById("acpBlurb").innerHTML =
-   `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 22px">
+   `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 20px">
   <img src = "ACP Logo.png" width=142px>Bonjour à toutes et tous,<br/><br/>
   <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${row.HeuredeDepart}.</strong></span>
   <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
   Si le lieu du départ est modifié vous serez informés via la messagerie du club.</p>
 
   <p>Après la pause-café, deux groupes pourront être constitués en fonction des participants et de leur niveau de forme.</p>
-  <p style="color: red"><strong>Parcours proposé pour le G1 :</strong></p>`;
+  <p style="color: red"><strong>Parcours proposé pour le G1 :</strong></p></div>`;
         
        document.getElementById("acpTable").innerHTML =
-          `<table><tr><td colspan=2 align=center>x</td></tr>
+          `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 20px"><table><tr><td colspan=2 align=center>x</td></tr>
                   <tr><td>Parcours</td><td>${row.Parcours}</td><tr><td>Dist (km)</td><td>${row.Distance}</td></tr>
                   <tr><td>Déniv (m)</td><td>${row.Denivele}</td></tr>
                   <tr><td>Café</td><td>${row.PauseCafé}</td></tr>
                   <tr><td>Itinéraire</td><td></td>x</tr>
                   <tr><td>Trace (GPX)</td><td></td>x</tr>
-                 </table>`;
+                 </table></div>`;
+        
   })});
 
 </script>
