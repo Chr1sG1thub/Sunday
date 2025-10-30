@@ -1,18 +1,17 @@
 <html>
   <head>
     <script src="https://unpkg.com/stein-js-client"></script>
+    <style>
+      table, th, td {
+  border: 1px lightgray;
+}
+  </style>
   </head>
 <body>
    <div id="acpBlurb"></div>
   <div id="acpTable"></div>
   
   <script>
-
-    <style>
-      table, th, td {
-  border: 1px lightgray;
-}
-  </style>
 
 const store = new SteinStore(
   "https://api.steinhq.com/v1/storages/690356b8affba40a62129a2d"
