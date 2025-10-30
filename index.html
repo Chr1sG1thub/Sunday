@@ -8,8 +8,9 @@
   </style>
   </head>
 <body>
-   <div id="acpBlurb"></div>
+   <div id="acpBlurb1"></div>
   <div id="acpTable"></div>
+  <div id="acpBlurb2"></div>
   
   <script>
 
@@ -20,7 +21,7 @@ const store = new SteinStore(
   store.read("Ride Plan 2025")
     .then(data => {data.forEach(
       row => {
-       document.getElementById("acpBlurb").innerHTML =
+       document.getElementById("acpBlurb1").innerHTML =
    `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
   <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
   <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${row.HeuredeDepart}.</strong></span>
@@ -39,6 +40,18 @@ const store = new SteinStore(
                   <tr><td><strong>Itinéraire</strong></td><td>x</td></tr>
                   <tr><td><strong>Trace (GPX)</strong></td><td>x</td></tr>
                  </table></div>`;
+       
+        document.getElementById("acpBlurb2").innerHTML =
+   `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
+  Bonjour à toutes et tous,<br/><br/>
+  <p style="color: red"><strong>Parcours proposé pour le G2</strong></p></br/>
+  <p>(Voir Signal si pas de publication ici …)</p>
+  <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
+  Si le lieu du départ est modifié vous serez informés via la messagerie du club.</p>
+
+  <p>Après la pause-café, deux groupes pourront être constitués en fonction des participants et de leur niveau de forme.</p>
+  <p style="color: red"><strong>Parcours proposé pour le G1 :</strong></p></div>`;
+
         
   })});
 
