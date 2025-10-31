@@ -37,7 +37,7 @@ function parseDateDDMMYYYY(dateStr) {
       store.read("Ride Plan 2025")
         .then(data => {
           
-   for (const row of data) {
+    for (const row of data) {
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
@@ -72,6 +72,44 @@ function parseDateDDMMYYYY(dateStr) {
                 break;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
           } //for (const row of data)
+ 
+          for (const row of data) {
+  if (row.Date == null) break;
+ //             console.log(parseDateDDMMYYYY(row.Date));
+              if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1) {
+  //            document.getElementById("acpBlurb1").innerHTML =
+    //            `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
+      //           <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
+        //         <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${row.HeuredeDepart}.</strong></span>
+          //       <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
+            //     Si le lieu du départ est modifié vous serez informés via la messagerie du club.</p>
+
+              //   <p>Après la pause-café, deux groupes pourront être constitués en fonction des participants et de leur niveau de forme.</p>
+                // <p style="color: red"><strong>Parcours proposé pour le G1 :</strong></p></div>`;
+        
+ //             document.getElementById("acpTable").innerHTML =
+   //             `<div style="font-family: Verdana, Geneva, sans-serif;">
+     //              <table>
+       //              <tr><td colspan=2 align=center>x</td></tr>
+         //            <tr><td><strong>Parcours</strong></td><td>${row.Parcours}</td></tr>
+           //          <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
+             //        <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
+               //      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
+                 //    <tr><td><strong>Itinéraire</strong></td><td>x</td></tr>
+                   //  <tr><td><strong>Trace (GPX)</strong></td><td>x</td></tr>
+  //                 </table>
+    //             </div>`;
+       
+      //        document.getElementById("acpBlurb2").innerHTML =
+        //        `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
+          //         <p style="color: red"><strong>Parcours proposé pour le G2</strong></p>
+            //       <p>(Voir Signal si pas de publication ici …)</p>
+              //   </div>`;
+                //break;
+                console.log(row.date);
+              } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
+          } //for (const row of data)
+
         } //data =>
       ); //.then
 
