@@ -27,16 +27,6 @@ function parseDateDDMMYYYY(dateStr) {
   return result;
 }
 
-array.some(item => {
-  if (item === 3) {
-    return true; // stops iteration
-  }
-  console.log(item);
-  return false;
-});
-
-
-
       const thisDate = new Date();
       const futureDate = addDays(thisDate, 7);
       
@@ -81,7 +71,6 @@ array.some(item => {
                  </div>`;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
             } //row
-            return false; //do next iteration
           ) //data.some
         } //data =>
       ); //.then
