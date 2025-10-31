@@ -74,22 +74,20 @@ function parseDateDDMMYYYY(dateStr) {
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
           } //for (const row of data)
  
-              document.getElementById("acpTable2").innerHTML =
-                `<div style="font-family: Verdana, Geneva, sans-serif;">
-                   <table>
-                     <tr><strong><td>Date</td><td>Départ</td><td>Heure</td><td>Départ</td><td>Parcours</td><td>Dist.</td><td>Deniv.</td></strong></tr>`;
+             let monthHTML = '<div style="font-family: Verdana, Geneva, sans-serif;"><table><tr><strong><td>Date</td><td>Départ</td><td>Heure</td><td>Départ</td><td>Parcours</td><td>Dist.</td><td>Deniv.</td></strong></tr>';
 
           for (const row of data) {
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
         
-              document.getElementById("acpTable2").innerHTML +=
-                `<tr><strong><td>Date</td><td>Départ</td><td>Heure</td><td>Départ</td><td>Parcours</td><td>Dist.</td><td>Deniv.</td></strong></tr>`;
+              monthHTML +=
+                `<tr><td>Date</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>`;
                 
               } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
           } //for (const row of data)
-                 document.getElementById("acpTable2").innerHTML += `</table></div>`;
+          monthHTML += '</table></div>';
+          document.getElementById("acpTable2").innerHTML = monthHTML;
 
         } //data =>
       ); //.then
