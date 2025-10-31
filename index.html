@@ -20,6 +20,19 @@ function parseDateDDMMYYYY(dateStr) {
   // parts[0] = day, parts[1] = month, parts[2] = year
   return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
 }
+
+  function addDays(date, days) {
+  const result = new Date(date);       // Clone the original date to avoid mutation
+  result.setDate(result.getDate() + days);  // Add the number of days
+  return result;
+}
+
+
+
+
+      const thisDay = new Date();
+      const futureDate = addDays(thisDate, 7);
+      
       const store = new SteinStore(
         "https://api.steinhq.com/v1/storages/690356b8affba40a62129a2d"
       );
@@ -28,7 +41,8 @@ function parseDateDDMMYYYY(dateStr) {
         .then(data => {
           data.forEach(
             row => {
-              console.log(parseDateDDMMYYYY(row.Date));
+ //             console.log(parseDateDDMMYYYY(row.Date));
+              if (parseDateDDMMYYYY(row.Date) > thisDate && parseDateDDMMYYYY(row.Date) < futureDate) {
               document.getElementById("acpBlurb1").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
@@ -57,6 +71,7 @@ function parseDateDDMMYYYY(dateStr) {
                    <p style="color: red"><strong>Parcours proposé pour le G2</strong></p>
                    <p>(Voir Signal si pas de publication ici …)</p>
                  </div>`;
+              } //if (parseDateDDMMYYYY(row.Date)) > thisDate
             } //row
           ) //data.forEach
         } //data =>
