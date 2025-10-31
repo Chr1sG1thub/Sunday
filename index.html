@@ -30,7 +30,7 @@ function parseDateDDMMYYYY(dateStr) {
 }
 
       const thisDate = new Date();
-  const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  const nextMonth = new Date(thisDate.getFullYear(), thisDate.getMonth() + 1, 1);
 const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
     
       const store = new SteinStore(
