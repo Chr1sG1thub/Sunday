@@ -36,9 +36,13 @@ function parseDateDDMMYYYY(dateStr) {
 
       store.read("Ride Plan 2025")
         .then(data => {
-          data.some(
-            row => {
-              if (row.Date == null) return true;
+  
+  }
+  console.log(item);
+}
+          
+   for (const row of data) {
+  if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date) > thisDate && parseDateDDMMYYYY(row.Date) < futureDate) {
               document.getElementById("acpBlurb1").innerHTML =
@@ -71,7 +75,7 @@ function parseDateDDMMYYYY(dateStr) {
                  </div>`;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
             } //row
-          ) //data.some
+          } //for (const row of data)
         } //data =>
       ); //.then
 
