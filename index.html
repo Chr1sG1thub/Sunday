@@ -82,7 +82,7 @@ function parseDateDDMMYYYY(dateStr) {
           for (const row of data) {
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
-              if (parseDateDDMMYYYY(row.Date).getMonth() = thisDate.getMonth() + 1) {
+              if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
         
               document.getElementById("acpTable2").innerHTML +=
                 `<tr><strong><td>Date</td><td>Départ</td><td>Heure</td><td>Départ</td><td>Parcours</td><td>Dist.</td><td>Deniv.</td></strong></tr>`;
