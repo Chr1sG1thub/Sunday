@@ -88,7 +88,7 @@ let dayAndMonth;
                             thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
 const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'long' });
 
-        dayAndMonth = row.Date.getDate() + monthNameFrenchShort;
+        dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
               monthHTML +=
                 `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${row.HeuredeDepart}</td><td>${row.Parcours}</td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
