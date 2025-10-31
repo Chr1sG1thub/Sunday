@@ -74,7 +74,7 @@ function parseDateDDMMYYYY(dateStr) {
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
           } //for (const row of data)
  
-             let monthHTML = '<div style="font-family: Verdana, Geneva, sans-serif;"><table><tr><strong><td>Date</td><td>Départ</td><td>Heure</td><td>Départ</td><td>Parcours</td><td>Dist.</td><td>Deniv.</td></strong></tr>';
+             let monthHTML = '<div style="font-family: Verdana, Geneva, sans-serif;"><table><tr><strong><td>Date</td><td>Départ</td><td>Heure</td><td>Parcours</td><td>Pause Café</td><td>Dist.</td><td>Deniv.</td></strong></tr>';
 
           for (const row of data) {
   if (row.Date == null) break;
@@ -82,7 +82,7 @@ function parseDateDDMMYYYY(dateStr) {
               if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
         
               monthHTML +=
-                `<tr><td>Date</td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td></tr>`;
+                `<tr><td>${row.Date}</td><td>${row.PointdeDepart}</td><td>${row.HeuredeDepart}</td><td>${row.Parcours}</td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
               } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
           } //for (const row of data)
