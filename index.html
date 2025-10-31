@@ -12,7 +12,7 @@
     <div id="acpBlurb1"></div>
     <div id="acpTable"></div>
     <div id="acpBlurb2"></div>
-  
+  <hr/>
     <div id="acpTable2"></div>
 
     <script>
@@ -86,7 +86,7 @@ let dayAndMonth;
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
                             thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
-const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'long' });
+const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
 
         dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
               monthHTML +=
