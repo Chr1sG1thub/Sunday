@@ -40,7 +40,7 @@ function parseDateDDMMYYYY(dateStr) {
    for (const row of data) {
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
-              if (parseDateDDMMYYYY(row.Date) > thisDate && parseDateDDMMYYYY(row.Date) < futureDate) {
+              if (parseDateDDMMYYYY(row.Date) > thisDate) {
               document.getElementById("acpBlurb1").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
@@ -69,6 +69,7 @@ function parseDateDDMMYYYY(dateStr) {
                    <p style="color: red"><strong>Parcours proposé pour le G2</strong></p>
                    <p>(Voir Signal si pas de publication ici …)</p>
                  </div>`;
+                break;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
           } //for (const row of data)
         } //data =>
