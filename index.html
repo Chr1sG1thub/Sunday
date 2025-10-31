@@ -15,6 +15,11 @@
   
     <script>
 
+function parseDateDDMMYYYY(dateStr) {
+  const parts = dateStr.split('/');
+  // parts[0] = day, parts[1] = month, parts[2] = year
+  return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+}
       const store = new SteinStore(
         "https://api.steinhq.com/v1/storages/690356b8affba40a62129a2d"
       );
@@ -23,7 +28,7 @@
         .then(data => {
           data.forEach(
             row => {
-              console.log(row.Date);
+              console.log(parseDateDDMMYYYY(row.Date));
               document.getElementById("acpBlurb1").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
