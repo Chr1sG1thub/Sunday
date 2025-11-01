@@ -50,7 +50,7 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
 const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
               document.getElementById("acpBlurb1").innerHTML =
-                `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche '+${theDate2}+' '+${monthNameFrench2}+' '+theYear+'</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
+                `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
                  <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${row.HeuredeDepart}.</strong></span>
                  <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
