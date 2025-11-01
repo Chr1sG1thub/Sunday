@@ -62,7 +62,7 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
                      <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
                      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
-                     <tr><td><strong>Itinéraire</strong></td><td><a href="xxx">Itinéraire</a></td></tr>
+                     <tr><td><strong>Itinéraire</strong></td><td><a href="${row.Strava}">Itinéraire</a></td></tr>
                      <tr><td><strong>Trace (GPX)</strong></td><td><a href="xxx">Trace</a></td></tr>
                    </table>
                  </div>`;
@@ -90,7 +90,7 @@ const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' 
 
         dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
               monthHTML +=
-                `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${row.HeuredeDepart}</td><td><a href="xxx">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
+                `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${row.HeuredeDepart}</td><td><a href="${row.Strava}">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
               } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
           } //for (const row of data)
