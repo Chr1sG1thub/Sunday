@@ -31,6 +31,7 @@ async function extractFirstLinkContainingText(url, searchText) {
   const link = links.find(a => a.textContent.toLowerCase().includes(searchText.toLowerCase()));
 
   if (link) {
+    console.log(link.href);
     return link.href;
   } else {
     return null;
