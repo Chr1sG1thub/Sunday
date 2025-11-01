@@ -18,28 +18,6 @@
 
     <script>
 
-      let theLink;
-
-async function extractFirstLinkContainingText(url, searchText) {
-  const proxyUrl = 'https://api.allorigins.win/get?url=';
-  const response = await fetch(proxyUrl + encodeURIComponent(url));
-  const data = await response.json();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(data.contents, 'text/html');
-
-  const links = [...doc.querySelectorAll('a')];
-  const link = links.find(a => a.textContent.toLowerCase().includes(searchText.toLowerCase()));
-
-  if (link) {
-    console.log(link.href);
-    return link.href;
-  } else {
-    return null;
-  }
-}
-
-theLink = extractFirstLinkContainingText('https://acprades.fr', 'dimanche');
-
     function parseDateDDMMYYYY(dateStr) {
   const parts = dateStr.split('/');
   // parts[0] = day, parts[1] = month, parts[2] = year
@@ -70,7 +48,7 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
               document.getElementById("acpSignal").innerHTML =
-                `Demain, pour le G1, départ de ${row.PointdeDepart} à ${row.HeuredeDepart}. Détails ici : ${theLink}<br/><hr>`;
+                `Demain, pour le G1, départ de ${row.PointdeDepart} à ${row.HeuredeDepart}. Détails ici : ???<br/><hr>`;
         
                 break;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
