@@ -9,6 +9,7 @@
     </style>
   </head>
   <body>
+    <div id="acpSignal"></div>
     <div id="acpBlurb1"></div>
     <div id="acpTable"></div>
     <div id="acpBlurb2"></div>
@@ -43,6 +44,17 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
         .then(data => {
           
     for (const row of data) {
+  if (row.Date == null) break;
+ //             console.log(parseDateDDMMYYYY(row.Date));
+              if (parseDateDDMMYYYY(row.Date) > thisDate) {
+              document.getElementById("acpSignal").innerHTML =
+                `Demain, pour le G1, départ de ${row.PointdeDepart} à ${row.HeuredeDepart}. Détails ici : xxx<hr>`;
+        
+                break;
+              } //if (parseDateDDMMYYYY(row.Date)) > thisDate
+          } //for (const row of data)
+
+          for (const row of data) {
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
       let theDate2 = parseDateDDMMYYYY(row.Date).getDate();
