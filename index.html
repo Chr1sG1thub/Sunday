@@ -9,7 +9,7 @@
     </style>
   </head>
   <body>
-    <div id="acpSignal" style="font-size: 48px;"></div>
+    <div id="acpSignal" style="font-size: 40px;"></div>
     <div id="acpBlurb1"></div>
     <div id="acpTable"></div>
     <div id="acpBlurb2"></div>
@@ -80,8 +80,9 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
+                const hour = row.HeuredeDepart.substring(1,2)+"h"+row.HeuredeDepart.substring(4,5)
               document.getElementById("acpSignal").innerHTML =
-                `Demain, pour le G1, départ de ${row.PointdeDepart} à ${row.HeuredeDepart}. Détails ici : <a href="${result}" target=_blank>${result}</a><br/><hr>`;
+                `Demain, pour le G1, départ de ${row.PointdeDepart} à ${hour}. Détails ici : <a href="${result}" target=_blank>${result}</a><br/><hr>`;
         
                 break;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
@@ -94,10 +95,11 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
       let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
 const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
+                const hour = row.HeuredeDepart.substring(1,2)+"h"+row.HeuredeDepart.substring(4,5)
               document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
-                 <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${row.HeuredeDepart}.</strong></span>
+                 <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${hour}.</strong></span>
                  <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
                  Si le lieu du départ est modifié vous serez informés via la messagerie du club.</p>
 
@@ -139,8 +141,9 @@ let dayAndMonth;
 const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
 
         dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
-              monthHTML +=
-                `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${row.HeuredeDepart}</td><td><a href="${row.Strava}" target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
+                      const hour = row.HeuredeDepart.substring(1,2)+"h"+row.HeuredeDepart.substring(4,5)
+        monthHTML +=
+                `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${hour}</td><td><a href="${row.Strava}" target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
               } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
           } //for (const row of data)
