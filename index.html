@@ -40,10 +40,6 @@
     document.getElementById('popupOverlay').style.display = 'none';
   }
 
-  // Open button handler
-  document.getElementById('closeBtn').onclick = function() {
-    document.getElementById('popupOverlay').style.display = 'none';
-  }
       
  async function extractFirstLinkContainingText(url, searchText) {
   const proxyUrl = 'https://api.allorigins.win/get?url=';
@@ -108,8 +104,8 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
                 const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5)
-              document.getElementById("acpSignal").innerHTML =
-                `Demain, pour le G1, départ de ${row.PointdeDepart} à ${hour}. Détails ici : ???<br/><hr>`;
+       //       document.getElementById("acpSignal").innerHTML =
+        //        `Demain, pour le G1, départ de ${row.PointdeDepart} à ${hour}. Détails ici : ???<br/><hr>`;
         
                 break;
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
