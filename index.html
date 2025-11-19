@@ -109,7 +109,7 @@ const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               document.getElementById("acpTable").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif;">
                    <table width=100%>
-                     <tr><td colspan=2 align=center>[Image here]<br>Pour une version zoomable de cette carte, cliquez <a href='https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile=${row.Parcours}.gpx' target=_blank>ici</a> (nouvelle fenêtre).</td></tr>
+                     <tr><td colspan=2 align=center>[Image here]<br><i>Pour une version zoomable de cette carte, cliquez <a href='https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile=${row.Parcours}.gpx' target=_blank>ici</a> (nouvelle fenêtre).</i></td></tr>
                      <tr><td><strong>Parcours</strong></td><td>${row.Parcours}</td></tr>
                      <tr><td><strong>Parcours Détaillé</strong></td><td style="font-size: 10px;">${row.Details}</td></tr>
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
