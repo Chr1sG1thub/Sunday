@@ -116,7 +116,8 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
       let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
 const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
-                const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5)
+                const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
+                const url = 'https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile='+row.Parcours+'.gpx';
               document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
@@ -130,7 +131,7 @@ const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               document.getElementById("acpTable").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif;">
                    <table width=100%>
-                     <tr><td colspan=2 align=center>[Image here]<br><i>Pour une version zoomable de cette carte, cliquez <span onclick = showPopup('https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile="${row.Parcours}.gpx"')>ici</span></a> (nouvelle fenêtre).</i></td></tr>
+                     <tr><td colspan=2 align=center>[Image here]<br><i>Pour une version zoomable de cette carte, cliquez <span onclick = showPopup(url)>ici</span> (nouvelle fenêtre).</i></td></tr>
                      <tr><td><strong>Parcours</strong></td><td>${row.Parcours}</td></tr>
                      <tr><td><strong>Parcours Détaillé</strong></td><td style="font-size: 10px;">${row.Details}</td></tr>
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
