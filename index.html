@@ -68,7 +68,7 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
 const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
                 const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
-                const url = 'https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon;
+                const url = 'https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
               document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
