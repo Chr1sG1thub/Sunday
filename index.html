@@ -110,7 +110,7 @@ let dayAndMonth;
 
           for (const row of data) {
   if (row.Date == null) break;
-                            url = 'https://chr1sg1thub.github.io/TownsOnMap/index2?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
+                            url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
  //             console.log(parseDateDDMMYYYY(row.Date));
               if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
