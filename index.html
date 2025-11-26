@@ -113,7 +113,7 @@ let dayAndMonth;
                             url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
  //             console.log(parseDateDDMMYYYY(row.Date));
-        ///      if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
+              if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
                             thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
 const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
 
@@ -122,7 +122,7 @@ const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' 
         monthHTML +=
                 `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${hour}</td><td><a href='${url}' target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
-     ///         } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
+              } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
           } //for (const row of data)
           monthHTML += '</table></div>';
           document.getElementById("acpTable2").innerHTML = monthHTML;
