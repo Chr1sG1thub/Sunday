@@ -71,7 +71,7 @@ const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
   if (row.Date == null) break;
  //             console.log(parseDateDDMMYYYY(row.Date));
       let theDate2 = parseDateDDMMYYYY(row.Date).getDate();
-            let imageFilename = '/images/'+ddmmyyyyToYyyymmdd(row.Date)+'.png';
+            let imageFilename = '/Sunday/images/'+ddmmyyyyToYyyymmdd(row.Date)+'.png';
       let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
 const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               if (parseDateDDMMYYYY(row.Date) > thisDate) {
