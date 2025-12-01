@@ -14,39 +14,41 @@
     <div id="acpBlurb1"></div>
     <div id="acpTable"></div>
     <div id="acpBlurb2"></div>
-  <hr/>
+    <hr/>
     <div id="acpTable2"></div>
-  <hr/>
+    <hr/>
     <div id="acpTable3"></div>
 
 
     <script>
-
+////////////////////////////////////////////////////////////////////////////////////////
 function ddmmyyyyToYyyymmdd(dateStr) {
+  //Converts date string in form dd/mm/yyyy to date string in form yyyymmdd.
   const [dd, mm, yyyy] = dateStr.split('/');
   return `${yyyy}${mm}${dd}`;
 }
 
 //console.log(ddmmyyyyToYyyymmdd("31/12/2025")); // "20251231"
-  
+////////////////////////////////////////////////////////////////////////////////////////  
 function parseDateDDMMYYYY(dateStr) {
+  //Converts date string in form dd/mm/yyyy to a JS date.
   const parts = dateStr.split('/');
   // parts[0] = day, parts[1] = month, parts[2] = year
   return new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
 }
-
+////////////////////////////////////////////////////////////////////////////////////////
 function addDays(date, days) {
+  //Adds a number of days to a date.
   const result = new Date(date);       // Clone the original date to avoid mutation
   result.setDate(result.getDate() + days);  // Add the number of days
   return result;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
 async function main() {
-  const theYear = "2025";
-
-      //const result = await getData();
-      
+        
   const thisDate = new Date();
+  const theYear = thisDate.getFullYear(); 
   const nextMonth = new Date(thisDate.getFullYear(), thisDate.getMonth() + 1, 1);
   const nextmonthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
   const thismonthNameFrench = thisDate.toLocaleString('fr-FR', { month: 'long' });
@@ -122,10 +124,11 @@ async function main() {
 
       for (const row of data) {
         if (row.Date == null) break;
-        url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
  //             console.log(parseDateDDMMYYYY(row.Date));
         if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth()) {
+          url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
+          
           thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
           monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
           dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
@@ -162,6 +165,9 @@ async function main() {
     } //data =>
   ); //.then
 } //main()
+
+////////////////////////////////////////////////////////////////////////////////////////
+
 main();
 
     </script>
