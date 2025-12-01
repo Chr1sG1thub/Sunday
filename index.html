@@ -59,28 +59,29 @@ async function main() {
 
   store.read("Ride Plan "+theYear)
     .then(data => {       
-      for (const row of data) {
-        if (row.Date == null) break;
+      //for (const row of data) {
+        //if (row.Date == null) break; //Stop at the end of the year.
  //             console.log(parseDateDDMMYYYY(row.Date));
-        if (parseDateDDMMYYYY(row.Date) > thisDate) {
-          const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5)
+        //if (parseDateDDMMYYYY(row.Date) > thisDate) {
+         //const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5)
        //       document.getElementById("acpSignal").innerHTML =
         //        `Demain, pour le G1, départ de ${row.PointdeDepart} à ${hour}. Détails ici : ???<br/><hr>`;
         
-          break; //Once you've found a date in the future, stop.
-        } //if (parseDateDDMMYYYY(row.Date)) > thisDate
-      } //for (const row of data)
+         // break; //Once you've found a date in the future, stop.
+      //  } //if (parseDateDDMMYYYY(row.Date)) > thisDate
+    //  } //for (const row of data)
 
       for (const row of data) {
-        if (row.Date == null) break;
+        if (row.Date == null) break;  //Stop at the end of the year.
  //             console.log(parseDateDDMMYYYY(row.Date));
-        let theDate2 = parseDateDDMMYYYY(row.Date).getDate();
-        let imageFilename = '/Sunday/images/'+ddmmyyyyToYyyymmdd(row.Date)+'.png';
-        let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
-        const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
         if (parseDateDDMMYYYY(row.Date) > thisDate) {
+          let theDate2 = parseDateDDMMYYYY(row.Date).getDate();
+          let imageFilename = '/Sunday/images/'+ddmmyyyyToYyyymmdd(row.Date)+'.png';
+          let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
+          const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
           const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
           const url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
+
           document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
