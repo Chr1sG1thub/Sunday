@@ -118,7 +118,7 @@ const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
           let hour;
           let monthHTML;
           
-          monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+monthNameFrench+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+monthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
+          monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+monthNameFrench2+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+monthNameFrench2+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
 
           for (const row of data) {
             if (row.Date == null) break;
