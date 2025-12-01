@@ -67,7 +67,7 @@ async function main() {
        //       document.getElementById("acpSignal").innerHTML =
         //        `Demain, pour le G1, départ de ${row.PointdeDepart} à ${hour}. Détails ici : ???<br/><hr>`;
         
-          break;
+          break; //Once you've found a date in the future, stop.
         } //if (parseDateDDMMYYYY(row.Date)) > thisDate
       } //for (const row of data)
 
