@@ -16,6 +16,8 @@
     <div id="acpBlurb2"></div>
   <hr/>
     <div id="acpTable2"></div>
+  <hr/>
+    <div id="acpTable3"></div>
 
 
     <script>
@@ -110,29 +112,54 @@ const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
               } //if (parseDateDDMMYYYY(row.Date)) > thisDate
           } //for (const row of data)
  
-             let monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+monthNameFrench+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+monthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
-let dayAndMonth;
+          let dayAndMonth;
           let thisMonth;
           let monthNameFrenchShort;
+          let hour;
+          let monthNameFrenchShort;
+          let monthHTML;
+          
+          monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+monthNameFrench+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+monthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
 
           for (const row of data) {
-  if (row.Date == null) break;
-                            url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
+            if (row.Date == null) break;
+            url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
  //             console.log(parseDateDDMMYYYY(row.Date));
-              if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
-                            thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
-const monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
+            if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth()) {
+              thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
+              monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
 
-        dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
-                      const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
-        monthHTML +=
+              dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
+              hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
+              monthHTML +=
                 `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${hour}</td><td><a href='${url}' target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
-              } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
+            } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
           } //for (const row of data)
           monthHTML += '</table></div>';
           document.getElementById("acpTable2").innerHTML = monthHTML;
+
+          monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+monthNameFrench+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+monthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
+
+          for (const row of data) {
+            if (row.Date == null) break;
+            url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
+
+ //             console.log(parseDateDDMMYYYY(row.Date));
+            if (parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth() + 1) {
+              thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
+              monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
+
+              dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
+              hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
+              monthHTML +=
+                `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${hour}</td><td><a href='${url}' target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
+                
+            } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
+          } //for (const row of data)
+          monthHTML += '</table></div>';
+          document.getElementById("acpTable3").innerHTML = monthHTML;
 
         } //data =>
       ); //.then
