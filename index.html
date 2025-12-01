@@ -49,7 +49,7 @@ async function main() {
 const monthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
     
       const store = new SteinStore(
-        "https://api.steinhq.com/v1/storages/691edb78affba40a621cdb9c"
+        "https://api.steinhq.com/v1/storages/692da1acaffba40a62246e38"
       );
 
       store.read("Ride Plan "+theYear)
@@ -97,7 +97,7 @@ const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
                      <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
                      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
                      <tr><td><strong>Itinéraire</strong></td><td><a href="${row.Strava}" target="_blank">Itinéraire</a></td></tr>
-                     <tr><td><strong>Trace (GPX)</strong></td><td><a href="xxx">Trace</a></td></tr>
+                     <tr><td><strong>Trace (GPX)</strong></td><td><a href="https://drive.google.com/file/d/${row.FileId}/view?usp=drive_link">Trace</a></td></tr>
                    </table>
                  </div>`;
        
