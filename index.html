@@ -57,19 +57,8 @@ async function main() {
     "https://api.steinhq.com/v1/storages/692da1acaffba40a62246e38"
   );
 
-  store.read("Ride Plan "+theYear)
-    .then(data => {       
-      //for (const row of data) {
-        //if (row.Date == null) break; //Stop at the end of the year.
- //             console.log(parseDateDDMMYYYY(row.Date));
-        //if (parseDateDDMMYYYY(row.Date) > thisDate) {
-         //const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5)
-       //       document.getElementById("acpSignal").innerHTML =
-        //        `Demain, pour le G1, départ de ${row.PointdeDepart} à ${hour}. Détails ici : ???<br/><hr>`;
-        
-         // break; //Once you've found a date in the future, stop.
-      //  } //if (parseDateDDMMYYYY(row.Date)) > thisDate
-    //  } //for (const row of data)
+  try {
+    const data = await store.read("Ride Plan " + theYear);
 
       for (const row of data) {
         if (row.Date == null) break;  //Stop at the end of the year.
@@ -163,9 +152,9 @@ async function main() {
       monthHTML += '</table></div>';
       document.getElementById("acpTable3").innerHTML = monthHTML;
 
-    } //data =>
-  ); //.then
-} //main()
+ } catch (error) {
+    console.error("Failed to load ride data:", error);
+  } //main()
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
