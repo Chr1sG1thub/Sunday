@@ -69,7 +69,7 @@ async function main() {
           let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
           const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
           const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
-          const url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
+          const url = 'https://chr1sg1thub.github.io/TownsOnMap/index5.html?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
           document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
