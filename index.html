@@ -63,10 +63,31 @@ async function main() {
     "https://api.steinhq.com/v1/storages/692da1acaffba40a62246e38"
   );
 
+  let data2025, data2026, data;
+  
   try {
-    const data = await store.read("Ride Plan " + thisYear);
+    data2025 = await store.read("Ride Plan 2025");
+ } catch (error) {
+    console.error("Failed to load ride data:", error);
+  } //try-catch
+   try {
+    data2026 = await store.read("Ride Plan 2026");
+ } catch (error) {
+    console.error("Failed to load ride data:", error);
+  } //try-catch
+  
+ const getValidLength = (arr) => {
+  return arr.findIndex(row => row[0] === null || row[0] === undefined);
+};
 
-      for (const row of data) {
+const len2025 = getValidLength(data2025);
+const len2026 = getValidLength(data2026);
+  data = [
+  ...data2025.slice(0, len2025),
+  ...data2026.slice(0, len2026)
+];
+  
+    for (const row of data) {
         if (row.Date == null) break;  //Stop at the end of the year.
  //             console.log(parseDateDDMMYYYY(row.Date));
         if (parseDateDDMMYYYY(row.Date) > thisDate) {
@@ -158,9 +179,6 @@ async function main() {
       monthHTML += '</table></div>';
       document.getElementById("acpTable3").innerHTML = monthHTML;
 
- } catch (error) {
-    console.error("Failed to load ride data:", error);
-  } //try-catch
   } //main()
 
 ////////////////////////////////////////////////////////////////////////////////////////
