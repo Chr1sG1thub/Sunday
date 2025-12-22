@@ -48,17 +48,21 @@ function addDays(date, days) {
 async function main() {
         
   const thisDate = new Date();
-  const theYear = thisDate.getFullYear(); 
-  const nextMonth = new Date(thisDate.getFullYear(), thisDate.getMonth() + 1, 1);
-  const nextmonthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
+  const thisYear = thisDate.getFullYear(); 
+  if (thisDate.getMonth() == 12) {
+    const nextMonth = new Date(thisYear + 1, 1, 1);
+  } else {
+    const nextMonth = new Date(thisYear, thisDate.getMonth() + 1, 1);
+  }
   const thismonthNameFrench = thisDate.toLocaleString('fr-FR', { month: 'long' });
+  const nextmonthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
     
   const store = new SteinStore(
     "https://api.steinhq.com/v1/storages/692da1acaffba40a62246e38"
   );
 
   try {
-    const data = await store.read("Ride Plan " + theYear);
+    const data = await store.read("Ride Plan " + thisYear);
 
       for (const row of data) {
         if (row.Date == null) break;  //Stop at the end of the year.
@@ -72,7 +76,7 @@ async function main() {
           const url = 'https://chr1sg1thub.github.io/TownsOnMap/index.html?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
           document.getElementById("acpBlurb1").innerHTML =
-                `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${theYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
+                `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
                  <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${hour}.</strong></span>
                  <p>Le rendez-vous pour les sorties organisées par le club sont diffusées sur le blog et/ou Signal.
@@ -110,7 +114,7 @@ async function main() {
       let hour;
       let monthHTML;
           
-      monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+thismonthNameFrench+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+thismonthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
+      monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+thismonthNameFrench+' '+thisYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+thismonthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
 
       for (const row of data) {
         if (row.Date == null) break;
@@ -131,7 +135,7 @@ async function main() {
       monthHTML += '</table></div>';
       document.getElementById("acpTable2").innerHTML = monthHTML;
 
-      monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+nextmonthNameFrench+' '+theYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+nextmonthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
+      monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+nextmonthNameFrench+' '+thisYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+nextmonthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
 
       for (const row of data) {
         if (row.Date == null) break;
