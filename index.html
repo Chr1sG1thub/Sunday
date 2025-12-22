@@ -76,9 +76,15 @@ async function main() {
     console.error("Failed to load ride data:", error);
   } //try-catch
   
- const getValidLength = (arr) => {
-  return arr.findIndex(row => row[0].Date == null || row[0].Date == undefined);
+const getValidLength = (arr) => {
+  return arr.findIndex(row => 
+    !row ||                           // Empty row
+    row.Date == null ||               // null/undefined
+    row.Date === '' ||                // Empty string
+    row.Date === 'null'               // String "null"
+  );
 };
+
 
 const len2025 = getValidLength(data2025);
 const len2026 = getValidLength(data2026);
