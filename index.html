@@ -177,7 +177,7 @@ const len2026 = getValidLength(data2026);
         url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
  //             console.log(convertDDMMYYYToDate(row.Date));
-        if ((convertDDMMYYYToDate(row.Date).getMonth() == nextMonth) && (convertDDMMYYYToDate(row.Date).getFullYear() == yearOfNextMonth)) {
+        if ((convertDDMMYYYToDate(row.Date).getMonth() == nextMonth.getMonth()) && (convertDDMMYYYToDate(row.Date).getFullYear() == yearOfNextMonth)) {
           thisMonth = new Date(convertDDMMYYYToDate(row.Date).getFullYear(), convertDDMMYYYToDate(row.Date).getMonth(), 1);
           monthNameFrenchShort = nextMonth.toLocaleString('fr-FR', { month: 'short' });
 
