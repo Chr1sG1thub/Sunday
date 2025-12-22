@@ -52,7 +52,7 @@ async function main() {
   let nextMonth;
   //console.log(thisDate.getMonth());
   if (thisDate.getMonth() == 11) { //December - months are counted from zero
-    nextMonth = new Date(thisYear + 1, 1, 1);
+    nextMonth = new Date(thisYear + 1, 0, 1);
   } else {
     nextMonth = new Date(thisYear, thisDate.getMonth() + 1, 1);
   }
