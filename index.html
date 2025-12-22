@@ -50,8 +50,8 @@ async function main() {
   const thisDate = new Date();
   const thisYear = thisDate.getFullYear();
   let nextMonth;
-  console.log(thisDate.getMonth());
-  if (thisDate.getMonth() == 12) {
+  //console.log(thisDate.getMonth());
+  if (thisDate.getMonth() == 11) { //December - months are counted from zero
     nextMonth = new Date(thisYear + 1, 1, 1);
   } else {
     nextMonth = new Date(thisYear, thisDate.getMonth() + 1, 1);
