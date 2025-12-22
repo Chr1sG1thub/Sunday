@@ -48,11 +48,12 @@ function addDays(date, days) {
 async function main() {
         
   const thisDate = new Date();
-  const thisYear = thisDate.getFullYear(); 
+  const thisYear = thisDate.getFullYear();
+  let nextMonth;
   if (thisDate.getMonth() == 12) {
-    const nextMonth = new Date(thisYear + 1, 1, 1);
+    nextMonth = new Date(thisYear + 1, 1, 1);
   } else {
-    const nextMonth = new Date(thisYear, thisDate.getMonth() + 1, 1);
+    nextMonth = new Date(thisYear, thisDate.getMonth() + 1, 1);
   }
   const thismonthNameFrench = thisDate.toLocaleString('fr-FR', { month: 'long' });
   const nextmonthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
