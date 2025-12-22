@@ -30,7 +30,7 @@ function ddmmyyyyToYyyymmdd(dateStr) {
 
 //console.log(ddmmyyyyToYyyymmdd("31/12/2025")); // "20251231"
 ////////////////////////////////////////////////////////////////////////////////////////  
-function parseDateDDMMYYYY(dateStr) {
+function convertDDMMYYYToDate(dateStr) {
   //Converts date string in form dd/mm/yyyy to a JS date.
   const parts = dateStr.split('/');
   // parts[0] = day, parts[1] = month, parts[2] = year
@@ -49,12 +49,14 @@ async function main() {
         
   const thisDate = new Date();
   const thisYear = thisDate.getFullYear();
-  let nextMonth;
+  let nextMonth, yearOfNextMonth;
   //console.log(thisDate.getMonth());
   if (thisDate.getMonth() == 11) { //December - months are counted from zero
     nextMonth = new Date(thisYear + 1, 0, 1);
+    yearOfNextMonth = thisYear + 1;
   } else {
     nextMonth = new Date(thisYear, thisDate.getMonth() + 1, 1);
+    yearOfNextMonth = thisYear;
   }
   const thismonthNameFrench = thisDate.toLocaleString('fr-FR', { month: 'long' });
   const nextmonthNameFrench = nextMonth.toLocaleString('fr-FR', { month: 'long' });
@@ -96,9 +98,9 @@ const len2026 = getValidLength(data2026);
  // Next date...
   for (const row of data) {
  //       if (row.Date == null) break;  //Stop at the end of the year.
- //             console.log(parseDateDDMMYYYY(row.Date));
-        if (parseDateDDMMYYYY(row.Date) > thisDate) {
-          let theDate2 = parseDateDDMMYYYY(row.Date).getDate();
+ //             console.log(convertDDMMYYYToDate(row.Date));
+        if (convertDDMMYYYToDate(row.Date) > thisDate) {
+          let theDate2 = convertDDMMYYYToDate(row.Date).getDate();
           let imageFilename = '/Sunday/images/'+ddmmyyyyToYyyymmdd(row.Date)+'.png';
           let thisMonth = new Date(thisDate.getFullYear(), thisDate.getMonth(), 1);
           const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
@@ -135,7 +137,7 @@ const len2026 = getValidLength(data2026);
                    <p>(Voir Signal si pas de publication ici …)</p>
                  </div>`;
           break;
-        } //if (parseDateDDMMYYYY(row.Date)) > thisDate
+        } //if (convertDDMMYYYToDate(row.Date)) > thisDate
       } //for (const row of data)
  
       let dayAndMonth;
@@ -150,41 +152,41 @@ const len2026 = getValidLength(data2026);
   for (const row of data) {
  //       if (row.Date == null) break;
 
- //             console.log(parseDateDDMMYYYY(row.Date));
-        if ((parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth()) && (parseDateDDMMYYYY(row.Date).getFullYear() == thisDate.getFullYear()))
+ //             console.log(convertDDMMYYYToDate(row.Date));
+        if ((convertDDMMYYYToDate(row.Date).getMonth() == thisDate.getMonth()) && (convertDDMMYYYToDate(row.Date).getFullYear() == thisDate.getFullYear()))
             {
           url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
           
-          thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
+          thisMonth = new Date(convertDDMMYYYToDate(row.Date).getFullYear(), convertDDMMYYYToDate(row.Date).getMonth(), 1);
           monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
-          dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
+          dayAndMonth = convertDDMMYYYToDate(row.Date).getDate() + ' ' + monthNameFrenchShort;
           hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
           monthHTML +=
                 `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${hour}</td><td><a href='${url}' target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
-        } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
+        } //if (convertDDMMYYYToDate(row.Date).getMonth() > thisDate.getMonth() + 1)
       } //for (const row of data)
       monthHTML += '</table></div>';
       document.getElementById("acpTable2").innerHTML = monthHTML;
 
   // Next month... 
-  monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+nextmonthNameFrench+' '+thisYear+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+nextmonthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
+  monthHTML = '<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sorties (G1) programmées de '+nextmonthNameFrench+' '+yearOfNextMonth+'</p><p style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">Voici les sorties dominicales (G1) programmées pour le mois de '+nextmonthNameFrench+' :</p>'+'<div style="font-family: Verdana, Geneva, sans-serif;"><table style="border-collapse: collapse;"><tr><td><strong>Date</strong></td><td><strong>Départ</strong></td><td><strong>Heure</strong></td><td><strong>Parcours</strong></td><td><strong>Pause Café</strong></td><td><strong>Dist (km)</strong></td><td><strong>Déniv (m)</strong></td></tr>';
 
       for (const row of data) {
         if (row.Date == null) break;
         url = 'https://chr1sg1thub.github.io/TownsOnMap/?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
- //             console.log(parseDateDDMMYYYY(row.Date));
-        if ((parseDateDDMMYYYY(row.Date).getMonth() == thisDate.getMonth()+1) && (parseDateDDMMYYYY(row.Date).getFullYear() == thisDate.getFullYear()+1)) {
-          thisMonth = new Date(parseDateDDMMYYYY(row.Date).getFullYear(), parseDateDDMMYYYY(row.Date).getMonth(), 1);
-          monthNameFrenchShort = thisMonth.toLocaleString('fr-FR', { month: 'short' });
+ //             console.log(convertDDMMYYYToDate(row.Date));
+        if ((convertDDMMYYYToDate(row.Date).getMonth() == nextMonth) && (convertDDMMYYYToDate(row.Date).getFullYear() == yearOfNextMonth)) {
+          thisMonth = new Date(convertDDMMYYYToDate(row.Date).getFullYear(), convertDDMMYYYToDate(row.Date).getMonth(), 1);
+          monthNameFrenchShort = nextMonth.toLocaleString('fr-FR', { month: 'short' });
 
-          dayAndMonth = parseDateDDMMYYYY(row.Date).getDate() + ' ' + monthNameFrenchShort;
+          dayAndMonth = convertDDMMYYYToDate(row.Date).getDate() + ' ' + monthNameFrenchShort;
           hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
           monthHTML +=
                 `<tr><td>${dayAndMonth}</td><td>${row.PointdeDepart}</td><td>${hour}</td><td><a href='${url}' target="_blank">${row.Parcours}</a></td><td>${row.PauseCafé}</td><td>${row.Distance}</td><td>${row.Denivele}</td></tr>`;
                 
-        } //if (parseDateDDMMYYYY(row.Date).getMonth() > thisDate.getMonth() + 1)
+        } //if (convertDDMMYYYToDate(row.Date).getMonth() > thisDate.getMonth() + 1)
       } //for (const row of data)
       monthHTML += '</table></div>';
       document.getElementById("acpTable3").innerHTML = monthHTML;
