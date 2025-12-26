@@ -28,6 +28,13 @@ function ddmmyyyyToYyyymmdd(dateStr) {
   return `${yyyy}${mm}${dd}`;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
+function ddmmyyyyToYyyydashmmdashdd(dateStr) {
+  //Converts date string in form dd/mm/yyyy to date string in form yyyymmdd.
+  const [dd, mm, yyyy] = dateStr.split('/');
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 //console.log(ddmmyyyyToYyyymmdd("31/12/2025")); // "20251231"
 ////////////////////////////////////////////////////////////////////////////////////////  
 function convertDDMMYYYToDate(dateStr) {
@@ -116,6 +123,7 @@ const len2026 = getValidLength(data2026);
 
                  <p>Après la pause-café, deux groupes pourront être constitués en fonction des participants et de leur niveau de forme.</p>
                  <p style="color: red"><strong>Parcours proposé pour le G1 :</strong></p></div>`;
+          const dateWithDashes = ddmmyyyyToYyyydashmmdashdd(row.Date);
         
           document.getElementById("acpTable").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif;">
@@ -126,6 +134,7 @@ const len2026 = getValidLength(data2026);
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
                      <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
                      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
+                     <tr><td><strong>Prévision Météo</strong></td><td><a href="https://chr1sg1thub.github.io/WeatherChart/?date=${dateWithDashes}" target="_blank">Prévision Météo</a></td></tr>
                      <tr><td><strong>Itinéraire</strong></td><td><a href="${row.Strava}" target="_blank">Itinéraire</a></td></tr>
                      <tr><td><strong>Trace (GPX)</strong></td><td><a href="https://drive.google.com/file/d/${row.FileId}/view?usp=drive_link">Trace</a></td></tr>
                    </table>
