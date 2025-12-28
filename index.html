@@ -51,7 +51,59 @@ function addDays(date, days) {
   return result;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////
+  async function getGpxBounds(gpxFilename) {
+  try {
+    // Fetch the GPX file as text from the server
+    const response = await fetch(gpxFilename);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch GPX file: ${response.status}`);
+    }
+    const gpxText = await response.text();
+    
+    // Parse the GPX XML content
+    const parser = new DOMParser();
+    const gpxDoc = parser.parseFromString(gpxText, 'text/xml');
+    
+    // Extract all trackpoint elements (<trkpt>)
+    const trackPoints = Array.from(gpxDoc.getElementsByTagName('trkpt'));
+    
+    if (trackPoints.length === 0) {
+      throw new Error('No trackpoints found in GPX file');
+    }
+    
+    // Initialize bounds with first point
+    const firstPoint = trackPoints[0];
+    let minLat = parseFloat(firstPoint.getAttribute('lat'));
+    let maxLat = minLat;
+    let minLon = parseFloat(firstPoint.getAttribute('lon'));
+    let maxLon = minLon;
+    
+    // Iterate through all trackpoints to find bounds
+    for (let i = 1; i < trackPoints.length; i++) {
+      const point = trackPoints[i];
+      const lat = parseFloat(point.getAttribute('lat'));
+      const lon = parseFloat(point.getAttribute('lon'));
+      
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+      if (lon < minLon) minLon = lon;
+      if (lon > maxLon) maxLon = lon;
+    }
+    
+    return {
+      minLat,
+      maxLat,
+      minLon,
+      maxLon
+    };
+  } catch (error) {
+    console.error('Error processing GPX file:', error);
+    throw error;
+  }
+}
+
+      ////////////////////////////////////////////////////////////////////////////////////////
 async function main() {
         
   const thisDate = new Date();
@@ -115,7 +167,22 @@ const len2026 = getValidLength(data2026);
           const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
           const url = 'https://chr1sg1thub.github.io/TownsOnMap/index.html?gpxFile='+row.Parcours+'.gpx&clat='+row.PCLat+'&clon='+row.PCLon+'&dist='+row.Distance+'&deniv='+row.Denivele;
 
-          document.getElementById("acpBlurb1").innerHTML =
+          const gpxFile = "https://raw.githubusercontent.com/Chr1sG1thub/TownsOnMap/main/gpx/"+row.Parcours+".gpx";
+          
+          getGpxBounds(gpxFile)
+  .then(bounds => {
+    console.log('GPX bounds:', bounds);
+    // Example output: { minLat: 42.123, maxLat: 42.456, minLon: 2.234, maxLon: 2.567 }
+    
+    // Optional: Use with Leaflet bounds
+    // const southWest = [bounds.minLat, bounds.minLon];
+    // const northEast = [bounds.maxLat, bounds.maxLon];
+    // map.fitBounds([southWest, northEast]);
+  })
+  .catch(error => console.error('Failed to get bounds:', error));
+  
+
+    document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
                  <span style="color: red"><strong>G1 et G2 rdv à ${row.PointdeDepart} à ${hour}.</strong></span>
