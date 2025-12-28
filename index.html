@@ -109,7 +109,7 @@ const len2026 = getValidLength(data2026);
         if (convertDDMMYYYToDate(row.Date) > thisDate) {
           let theDate2 = convertDDMMYYYToDate(row.Date).getDate();
           let imageFilename = '/Sunday/images/'+ddmmyyyyToYyyymmdd(row.Date)+'.png';
-          let thisMonth = new Date(convertDDMMYYYToDate(row.Date).getFullYear(), theDate2.getMonth(), 1);
+          let thisMonth = new Date(convertDDMMYYYToDate(row.Date).getFullYear(), convertDDMMYYYToDate(row.Date).getMonth(), 1);
           let thisYear = convertDDMMYYYToDate(row.Date).getFullYear();
           const monthNameFrench2 = thisMonth.toLocaleString('fr-FR', { month: 'long' });
           const hour = row.HeuredeDepart.substring(0,2)+"h"+row.HeuredeDepart.substring(3,5);
