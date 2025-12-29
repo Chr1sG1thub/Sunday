@@ -169,18 +169,7 @@ const len2026 = getValidLength(data2026);
 
           const gpxFile = "https://raw.githubusercontent.com/Chr1sG1thub/TownsOnMap/main/gpx/"+row.Parcours+".gpx";
           
-          getGpxBounds(gpxFile)
-  .then(bounds => {
-    console.log('GPX bounds:', bounds);
-    // Example output: { minLat: 42.123, maxLat: 42.456, minLon: 2.234, maxLon: 2.567 }
-    
-    // Optional: Use with Leaflet bounds
-    // const southWest = [bounds.minLat, bounds.minLon];
-    // const northEast = [bounds.maxLat, bounds.maxLon];
-    // map.fitBounds([southWest, northEast]);
-  })
-  .catch(error => console.error('Failed to get bounds:', error));
-  
+          let bounds = getGpxBounds(gpxFile);  
 
     document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
