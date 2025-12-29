@@ -52,6 +52,48 @@ function addDays(date, days) {
 }
 
       ////////////////////////////////////////////////////////////////////////////////////////
+
+function haversineDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Earth's radius in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+}
+
+// Interpolate lat/lon between two points by ratio (0-1)
+function interpolatePoint(p1, p2, ratio) {
+  return {
+    lat: p1.lat + (p2.lat - p1.lat) * ratio,
+    lon: p1.lon + (p2.lon - p1.lon) * ratio
+  };
+}
+      
+function getPositionAfterDistance(trackPoints, targetKm) {
+  let cumulativeDist = 0;
+  
+  for (let i = 1; i < trackPoints.length; i++) {
+    const prev = trackPoints[i-1];
+    const curr = trackPoints[i];
+    const segDist = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    
+    if (cumulativeDist + segDist >= targetKm) {
+      const remainingDist = targetKm - cumulativeDist;
+      const ratio = remainingDist / segDist;
+      return interpolatePoint(prev, curr, ratio);
+    }
+    
+    cumulativeDist += segDist;
+  }
+  
+  // If target exceeds total distance, return last point
+  return trackPoints[trackPoints.length - 1];
+}
+      
+      ////////////////////////////////////////////////////////////////////////////////////////
   async function getGpxBounds(gpxFilename) {
   try {
     // Fetch the GPX file as text from the server
@@ -71,6 +113,11 @@ function addDays(date, days) {
     if (trackPoints.length === 0) {
       throw new Error('No trackpoints found in GPX file');
     }
+
+    const at9am = getPositionAfterDistance(trackPoints, 20);
+    const at10am = getPositionAfterDistance(trackPoints, 40);
+    const at11am = getPositionAfterDistance(trackPoints, 60);
+    
     
     // Initialize bounds with first point
     const firstPoint = trackPoints[0];
