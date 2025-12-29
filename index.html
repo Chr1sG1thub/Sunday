@@ -85,7 +85,7 @@ function getPositionAfterDistance(trackPoints, targetKm) {
     if (cumulativeDist + segDist >= targetKm) {
       //const remainingDist = targetKm - cumulativeDist;
       //const ratio = remainingDist / segDist;
-      return {currLat, currLon};
+      return {lat: currLat, lon: currLon};
     }
     
     cumulativeDist += segDist;
