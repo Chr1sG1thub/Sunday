@@ -83,9 +83,9 @@ function getPositionAfterDistance(trackPoints, targetKm) {
    const segDist = haversineDistance(prevLat, prevLon, currLat, currLon);
     
     if (cumulativeDist + segDist >= targetKm) {
-      const remainingDist = targetKm - cumulativeDist;
-      const ratio = remainingDist / segDist;
-      return interpolatePoint(prevLat, prevLon, currLat, currLon, ratio);
+      //const remainingDist = targetKm - cumulativeDist;
+      //const ratio = remainingDist / segDist;
+      return {currLat, currLon};
     }
     
     cumulativeDist += segDist;
@@ -118,9 +118,12 @@ function getPositionAfterDistance(trackPoints, targetKm) {
       throw new Error('No trackpoints found in GPX file');
     }
 
+    const at8am = getPositionAfterDistance(trackPoints, 0);
     const at9am = getPositionAfterDistance(trackPoints, 20);
     const at10am = getPositionAfterDistance(trackPoints, 40);
     const at11am = getPositionAfterDistance(trackPoints, 60);
+    const at12am = getPositionAfterDistance(trackPoints, 80);
+    const at13am = getPositionAfterDistance(trackPoints, 100);
     
     
     // Initialize bounds with first point
