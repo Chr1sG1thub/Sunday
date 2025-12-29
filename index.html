@@ -76,9 +76,11 @@ function getPositionAfterDistance(trackPoints, targetKm) {
   let cumulativeDist = 0;
   
   for (let i = 1; i < trackPoints.length; i++) {
-    const prev = trackPoints[i-1];
-    const curr = trackPoints[i];
-    const segDist = haversineDistance(prev.lat, prev.lon, curr.lat, curr.lon);
+    const prevLat = trackPoints[i-1].getAttribute("lat");
+    const currLat = trackPoints[i].getAttribute("lat");
+    const prevLon = trackPoints[i-1].getAttribute("lon");
+    const currLon = trackPoints[i].getAttribute("lon");
+   const segDist = haversineDistance(prevLat, prevLon, currLat, currLon);
     
     if (cumulativeDist + segDist >= targetKm) {
       const remainingDist = targetKm - cumulativeDist;
