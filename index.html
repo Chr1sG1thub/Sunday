@@ -92,7 +92,9 @@ function getPositionAfterDistance(trackPoints, targetKm) {
   }
   
   // If target exceeds total distance, return last point
-  return trackPoints[trackPoints.length - 1];
+  return {
+    lat: trackPoints[trackPoints.length - 1].getAttribute("lat"),
+    lon: trackPoints[trackPoints.length - 1].getAttribute("lon"}};
 }
       
       ////////////////////////////////////////////////////////////////////////////////////////
