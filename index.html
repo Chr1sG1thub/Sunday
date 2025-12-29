@@ -65,10 +65,10 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
 }
 
 // Interpolate lat/lon between two points by ratio (0-1)
-function interpolatePoint(p1, p2, ratio) {
+function interpolatePoint(p1Lat, p1Lon, p2Lat, p2Lon, ratio) {
   return {
-    lat: p1.lat + (p2.lat - p1.lat) * ratio,
-    lon: p1.lon + (p2.lon - p1.lon) * ratio
+    lat: p1Lat + (p2Lat - p1Lat) * ratio,
+    lon: p1Lon + (p2Lon - p1Lon) * ratio
   };
 }
       
@@ -85,7 +85,7 @@ function getPositionAfterDistance(trackPoints, targetKm) {
     if (cumulativeDist + segDist >= targetKm) {
       const remainingDist = targetKm - cumulativeDist;
       const ratio = remainingDist / segDist;
-      return interpolatePoint(prev, curr, ratio);
+      return interpolatePoint(prevLat, prevLon, currLat, currLon, ratio);
     }
     
     cumulativeDist += segDist;
