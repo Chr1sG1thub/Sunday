@@ -169,7 +169,19 @@ const len2026 = getValidLength(data2026);
 
           const gpxFile = "https://raw.githubusercontent.com/Chr1sG1thub/TownsOnMap/main/gpx/"+row.Parcours+".gpx";
           
-          let bounds = getGpxBounds(gpxFile);  
+let globalBounds;
+  getGpxBounds(gpxFile)
+  .then(bounds => {
+    globalBounds = bounds;
+    //console.log('GPX bounds:', bounds);
+    // Example output: { minLat: 42.123, maxLat: 42.456, minLon: 2.234, maxLon: 2.567 }
+    
+    // Optional: Use with Leaflet bounds
+    // const southWest = [bounds.minLat, bounds.minLon];
+    // const northEast = [bounds.maxLat, bounds.maxLon];
+    // map.fitBounds([southWest, northEast]);
+  })
+  .catch(error => console.error('Failed to get bounds:', error));
 
     document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
@@ -191,7 +203,7 @@ const len2026 = getValidLength(data2026);
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
                      <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
                      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
-                     <tr><td><strong>👀Météo👀</strong></td><td>👀<a href="https://chr1sg1thub.github.io/WeatherChart/?date=${dateWithDashes}&depart=${row.PointdeDepart}&latmin=${bounds.minLat}&latmax=${bounds.maxLat}&lonmin=${bounds.minLon}&lonmax=${bounds.maxLon}" target="_blank">Prévisions Météo</a>👀</td></tr>
+                     <tr><td><strong>👀Météo👀</strong></td><td>👀<a href="https://chr1sg1thub.github.io/WeatherChart/?date=${dateWithDashes}&depart=${row.PointdeDepart}&latmin=${globalBounds.minLat}&latmax=${globalBounds.maxLat}&lonmin=${globalBounds.minLon}&lonmax=${globalBounds.maxLon}" target="_blank">Prévisions Météo</a>👀</td></tr>
                      <tr><td><strong>Itinéraire</strong></td><td><a href="${row.Strava}" target="_blank">Itinéraire</a></td></tr>
                      <tr><td><strong>Trace (GPX)</strong></td><td><a href="https://drive.google.com/file/d/${row.FileId}/view?usp=drive_link">Trace</a></td></tr>
                    </table>
