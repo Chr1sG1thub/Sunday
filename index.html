@@ -230,8 +230,9 @@ let globalBounds;
     console.error('Failed to get bounds:', error);
   }
 
-          departHour = row.HeuredeDepart.substring(0,2);
-          departMins = row.HeuredeDepart.substring(3,5);
+          departHour = parseInt(row.HeuredeDepart.substring(0,2));
+          departMins = parseInt(row.HeuredeDepart.substring(3,5));
+          departDistance = parseFloat(row.Distance);
 
        dist7 = Math.min(Math.max((7*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
        dist8 = Math.min(Math.max((8*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
