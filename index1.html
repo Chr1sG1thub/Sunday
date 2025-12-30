@@ -297,7 +297,7 @@ let hourPts = await getGpxPts(gpxFile, departHour, departMins, departDistance);
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
                      <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
                      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
-                     <tr><td><strong>👀Météo👀</strong></td><td>👀<a href="https://chr1sg1thub.github.io/WeatherChart/?date=${dateWithDashes}&depart=${row.PointdeDepart}&latmin=${globalBounds.minLat}&latmax=${globalBounds.maxLat}&lonmin=${globalBounds.minLon}&lonmax=${globalBounds.maxLon}" target="_blank">Prévisions Météo</a>👀</td></tr>
+                     <tr><td><strong>👀Météo👀</strong></td><td>👀<a href="https://chr1sg1thub.github.io/WeatherChart/index1?date=${dateWithDashes}&depart=${row.PointdeDepart}&lat7=${hourPts.at7.lat}&lon7=${hourPts.at7.lon}&lat8=${hourPts.at8.lat}&lon8=${hourPts.at8.lon}&lat9=${hourPts.at9.lat}&lon9=${hourPts.at9.lon}&lat10=${hourPts.at10.lat}&lon10=${hourPts.at10.lon}&lat11=${hourPts.at11.lat}&lon11=${hourPts.at11.lon}&lat12=${hourPts.at12.lat}&lon12=${hourPts.at12.lon}&lat13=${hourPts.at13.lat}&lon13=${hourPts.at13.lon}" target="_blank">Prévisions Météo</a>👀</td></tr>
                      <tr><td><strong>Itinéraire</strong></td><td><a href="${row.Strava}" target="_blank">Itinéraire</a></td></tr>
                      <tr><td><strong>Trace (GPX)</strong></td><td><a href="https://drive.google.com/file/d/${row.FileId}/view?usp=drive_link">Trace</a></td></tr>
                    </table>
