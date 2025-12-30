@@ -275,7 +275,7 @@ const len2026 = getValidLength(data2026);
           departMins = parseInt(row.HeuredeDepart.substring(3,5));
           departDistance = parseFloat(row.Distance);
 
-let hourPts = await getGPXPts(gpxFile, departHour, departMins, departDistance);
+let hourPts = await getGpxPts(gpxFile, departHour, departMins, departDistance);
   
           document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
