@@ -158,6 +158,54 @@ function getPositionAfterDistance(trackPoints, targetKm) {
 }
 
       ////////////////////////////////////////////////////////////////////////////////////////
+  async function getGpxPts(gpxFilename, departHour, departMins, departDistance) {
+  try {
+    // Fetch the GPX file as text from the server
+    const response = await fetch(gpxFilename);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch GPX file: ${response.status}`);
+    }
+    const gpxText = await response.text();
+    
+    // Parse the GPX XML content
+    const parser = new DOMParser();
+    const gpxDoc = parser.parseFromString(gpxText, 'text/xml');
+    
+    // Extract all trackpoint elements (<trkpt>)
+    const trackPoints = Array.from(gpxDoc.getElementsByTagName('trkpt'));
+    
+    if (trackPoints.length === 0) {
+      throw new Error('No trackpoints found in GPX file');
+    }
+    
+       let dist7 = Math.min(Math.max((7*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+       let dist8 = Math.min(Math.max((8*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+       let dist9 = Math.min(Math.max((9*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+       let dist10 = Math.min(Math.max((10*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+       let dist11 = Math.min(Math.max((11*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+       let dist12 = Math.min(Math.max((12*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+       let dist13 = Math.min(Math.max((13*60 - (departHour*60 + departMins))/60, 0)*20, departDistance);
+
+
+    const at7 = getPositionAfterDistance(trackPoints, dist7);
+    const at8 = getPositionAfterDistance(trackPoints, dist8);
+    const at9 = getPositionAfterDistance(trackPoints, dist9);
+    const at10 = getPositionAfterDistance(trackPoints, dist10);
+    const at11 = getPositionAfterDistance(trackPoints, dist11);
+    const at12 = getPositionAfterDistance(trackPoints, dist12);
+    const at13 = getPositionAfterDistance(trackPoints, dist13);
+  
+       
+    return {
+      at7, at8, at9, at10, at11, at12, at13
+    };
+  } catch (error) {
+    console.error('Error processing GPX file:', error);
+    throw error;
+  }
+}
+
+      ////////////////////////////////////////////////////////////////////////////////////////
 async function main() {
         
   const thisDate = new Date();
@@ -227,47 +275,8 @@ const len2026 = getValidLength(data2026);
           departMins = parseInt(row.HeuredeDepart.substring(3,5));
           departDistance = parseFloat(row.Distance);
 
-       let dist7 = Math.min(Math.max((7*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-       let dist8 = Math.min(Math.max((8*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-       let dist9 = Math.min(Math.max((9*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-       let dist10 = Math.min(Math.max((10*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-       let dist11 = Math.min(Math.max((11*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-       let dist12 = Math.min(Math.max((12*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-       let dist13 = Math.min(Math.max((13*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
-
-  try {
-    // Fetch the GPX file as text from the server
-    const response = await fetch(gpxFile);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch GPX file: ${response.status}`);
-    }
-    const gpxText = await response.text();
-    
-    // Parse the GPX XML content
-    const parser = new DOMParser();
-    const gpxDoc = parser.parseFromString(gpxText, 'text/xml');
-    
-    // Extract all trackpoint elements (<trkpt>)
-    const trackPoints = Array.from(gpxDoc.getElementsByTagName('trkpt'));
-    
-    if (trackPoints.length === 0) {
-      throw new Error('No trackpoints found in GPX file');
-    }
-
-    const at7 = getPositionAfterDistance(trackPoints, dist7);
-    const at8 = getPositionAfterDistance(trackPoints, dist8);
-    const at9 = getPositionAfterDistance(trackPoints, dist9);
-    const at10 = getPositionAfterDistance(trackPoints, dist10);
-    const at11 = getPositionAfterDistance(trackPoints, dist11);
-    const at12 = getPositionAfterDistance(trackPoints, dist12);
-    const at13 = getPositionAfterDistance(trackPoints, dist13);
-   
-    
-  } catch (error) {
-    console.error('Error processing GPX file:', error);
-    throw error;
-  }
-
+let hourPts = await getGPXPts(gpxFile, departHour, departMins, departDistance);
+  
           document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
