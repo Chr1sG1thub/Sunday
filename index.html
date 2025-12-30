@@ -230,6 +230,17 @@ let globalBounds;
     console.error('Failed to get bounds:', error);
   }
 
+          departHour = row.HeuredeDepart.substring(0,2);
+          departMins = row.HeuredeDepart.substring(3,5);
+
+       dist7 = Math.min(Math.max((7*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+       dist8 = Math.min(Math.max((8*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+       dist9 = Math.min(Math.max((9*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+       dist10 = Math.min(Math.max((10*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+       dist11 = Math.min(Math.max((11*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+       dist12 = Math.min(Math.max((12*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+       dist13 = Math.min(Math.max((13*60 - (departHour*60 + departMins))/60, 0)*20, row.Distance);
+
     document.getElementById("acpBlurb1").innerHTML =
                 `<p style="font-family: Verdana, Geneva, sans-serif; font-size: 24px">Sortie du dimanche ${theDate2} ${monthNameFrench2} ${thisYear}</p><div style="font-family: Verdana, Geneva, sans-serif; font-size: 16px">
                  <img src = "ACP Logo.png" width=142px>&nbsp;Bonjour à toutes et tous,<br/><br/>
