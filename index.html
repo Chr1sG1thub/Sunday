@@ -195,13 +195,13 @@ function getPositionAfterDistance(trackPoints, targetKm) {
     const at12 = getPositionAfterDistance(trackPoints, dist12);
     const at13 = getPositionAfterDistance(trackPoints, dist13);
 
-    console.log("at7: ", at7);
+/*    console.log("at7: ", at7);
     console.log("at8: ", at8);
     console.log("at9: ", at9);
     console.log("at10: ", at10);
     console.log("at11: ", at11);
     console.log("at12: ", at12);
-    console.log("at13: ", at13);
+    console.log("at13: ", at13);*/
        
     return {
       at7, at8, at9, at10, at11, at12, at13
@@ -304,7 +304,7 @@ let hourPts = await getGpxPts(gpxFile, departHour, departMins, departDistance);
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
                      <tr><td><strong>Déniv (m)</strong></td><td>${row.Denivele}</td></tr>
                      <tr><td><strong>Café</strong></td><td>${row.PauseCafé}</td></tr>
-                     <tr><td><strong>Météo</strong></td><td><iframe width="560" height="500" src="https://chr1sg1thub.github.io/WeatherChart/indexCutDown?date=${dateWithDashes}&depart=${row.PointdeDepart}&lat7=${hourPts.at7.lat}&lon7=${hourPts.at7.lon}&lat8=${hourPts.at8.lat}&lon8=${hourPts.at8.lon}&lat9=${hourPts.at9.lat}&lon9=${hourPts.at9.lon}&lat10=${hourPts.at10.lat}&lon10=${hourPts.at10.lon}&lat11=${hourPts.at11.lat}&lon11=${hourPts.at11.lon}&lat12=${hourPts.at12.lat}&lon12=${hourPts.at12.lon}&lat13=${hourPts.at13.lat}&lon13=${hourPts.at13.lon}" frameborder="0"></iframe></td></tr>
+                     <tr><td><strong>Météo</strong> (le jour de la sortie)</td><td><iframe width="560" height="500" src="https://chr1sg1thub.github.io/WeatherChart/indexCutDown?date=${dateWithDashes}&depart=${row.PointdeDepart}&lat7=${hourPts.at7.lat}&lon7=${hourPts.at7.lon}&lat8=${hourPts.at8.lat}&lon8=${hourPts.at8.lon}&lat9=${hourPts.at9.lat}&lon9=${hourPts.at9.lon}&lat10=${hourPts.at10.lat}&lon10=${hourPts.at10.lon}&lat11=${hourPts.at11.lat}&lon11=${hourPts.at11.lon}&lat12=${hourPts.at12.lat}&lon12=${hourPts.at12.lon}&lat13=${hourPts.at13.lat}&lon13=${hourPts.at13.lon}" frameborder="0"></iframe></td></tr>
                      <tr><td><strong>Itinéraire</strong></td><td><a href="${row.Strava}" target="_blank">Itinéraire</a></td></tr>
                      <tr><td><strong>Trace (GPX)</strong></td><td><a href="https://drive.google.com/file/d/${row.FileId}/view?usp=drive_link">Trace</a></td></tr>
                    </table>
