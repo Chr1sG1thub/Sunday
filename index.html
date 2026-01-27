@@ -298,7 +298,7 @@ let hourPts = await getGpxPts(gpxFile, departHour, departMins, departDistance);
           document.getElementById("acpTable").innerHTML =
                 `<div style="font-family: Verdana, Geneva, sans-serif;">
                    <table width=100%>
-                     <tr><td colspan=2 align=center><a href='${url}' target='_blank'><img src='${imageFilename}' width=90%></a><br><i>Pour une version zoomable, avec les <strong>Ascensions</strong> et <strong>Points d'Eau<strong> près de la route cliquez <span style='background-color: yellow;'>sur la carte</span> ou <a href='${url}' target='_blank' style='font-size: 24px; background-color: yellow;'>ici</a>.</i><br/></td></tr>
+                     <tr><td colspan=2 align=center><a href='${url}' target='_blank'><img src='${imageFilename}' width=90%></a><br><i>Pour une version zoomable, avec les <strong>Ascensions</strong> et <strong>Points d'Eau</strong> près de la route cliquez <span style='background-color: yellow;'>sur la carte</span> ou <a href='${url}' target='_blank' style='font-size: 24px; background-color: yellow;'>ici</a>.</i><br/></td></tr>
                      <tr><td><strong>Parcours</strong></td><td>${row.Parcours}</td></tr>
                      <tr><td><strong>Parcours Détaillé</strong></td><td style="font-size: 10px;">${row.Details}</td></tr>
                      <tr><td><strong>Dist (km)</strong></td><td>${row.Distance}</td></tr>
